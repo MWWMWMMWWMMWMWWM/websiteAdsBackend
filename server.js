@@ -23,6 +23,14 @@ const server = http.createServer((req, res) => {
   if (req.method === "OPTIONS") {
     res.writeHead(204);
     return res.end();
+    }
+
+
+  /*Then you can always test:
+https://websiteadsbackend.onrender.com/health using:*/
+  if (req.method === "GET" && req.url === "/health") {
+    res.writeHead(200);
+    return res.end("ok");
   }
 
   // POST /survey
