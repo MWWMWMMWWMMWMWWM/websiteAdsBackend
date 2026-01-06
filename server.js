@@ -1,8 +1,10 @@
 import http from "http";
-import sqlite3 from "sqlite3";
 
-// --- DATABASE (temporary SQLite) ---
-const db = new sqlite3.Database("survey.db");
+import pg from "pg";
+const pool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
 
 db.run(`
   CREATE TABLE IF NOT EXISTS surveys (
